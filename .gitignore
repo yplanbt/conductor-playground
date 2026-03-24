@@ -1,0 +1,27 @@
+# Secrets
+.env
+.env.*
+service_account.json
+*.pem
+*.key
+
+# Database
+*.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# Streamlit secrets (local only — use Streamlit Cloud UI for deployed secrets)
+.streamlit/secrets.toml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Conductor
+.context/
