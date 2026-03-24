@@ -1,0 +1,16 @@
+run = "pip install -r requirements.txt && python run.py"
+language = "python3"
+
+[nix]
+channel = "stable-24_05"
+
+[nix.packages]
+libxml2 = "libxml2"
+libxslt = "libxslt"
+
+[env]
+PORT = "8000"
+
+[[ports]]
+localPort = 8000
+externalPort = 80

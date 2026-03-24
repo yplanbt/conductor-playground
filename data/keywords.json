@@ -1,0 +1,47 @@
+{
+  "sentencing_base": [
+    "sentenced",
+    "sentencing",
+    "convicted",
+    "conviction",
+    "guilty verdict",
+    "prison term",
+    "jail time",
+    "pleaded guilty",
+    "found guilty"
+  ],
+  "death_involving": [
+    "murder",
+    "killed",
+    "homicide",
+    "death",
+    "manslaughter",
+    "fatal",
+    "deadly"
+  ],
+  "serious_non_death": [
+    "shooting",
+    "rape",
+    "child rape",
+    "sexual assault",
+    "assault",
+    "armed robbery",
+    "aggravated",
+    "kidnapping",
+    "arson",
+    "child abuse",
+    "domestic violence"
+  ],
+  "crime_categories": {
+    "Murder/Homicide": ["murder", "homicide", "manslaughter", "killed", "killing", "death"],
+    "Sexual Assault": ["rape", "sexual assault", "sexual abuse", "child rape", "molestation"],
+    "Assault": ["assault", "battery", "aggravated assault", "attack"],
+    "Robbery": ["robbery", "armed robbery", "burglary", "theft"],
+    "Shooting": ["shooting", "shot", "gunshot", "firearm"],
+    "Kidnapping": ["kidnapping", "abduction", "kidnapped"],
+    "Child Abuse": ["child abuse", "child neglect", "child endangerment"],
+    "Drug-related": ["drug trafficking", "drug dealing", "narcotics", "drug possession"],
+    "Arson": ["arson", "fire", "set fire"],
+    "Fraud": ["fraud", "embezzlement", "money laundering"]
+  }
+}

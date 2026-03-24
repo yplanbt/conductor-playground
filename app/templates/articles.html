@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Tripoli — All Articles{% endblock %}
+
+{% block content %}
+<div class="articles-page">
+    <div class="articles-toolbar">
+        <div class="toolbar-left">
+            <h2>All Articles</h2>
+            <span class="article-count" id="articleCount">0 articles</span>
+        </div>
+        <div class="toolbar-right">
+            <input type="text" id="searchInput" class="toolbar-search" placeholder="Search articles..." />
+            <button class="btn btn-primary btn-sm" id="addRowBtn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:-2px;margin-right:4px;">
+                    <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Add Row
+            </button>
+            <button class="btn btn-danger btn-sm" id="deleteAllBtn">Delete All</button>
+        </div>
+    </div>
+
+    <div class="spreadsheet-wrapper">
+        <table class="spreadsheet" id="spreadsheet">
+            <thead>
+                <tr>
+                    <th class="col-row-num">#</th>
+                    <th class="col-title">Title</th>
+                    <th class="col-defendant">Defendant</th>
+                    <th class="col-url">URL</th>
+                    <th class="col-date">Date</th>
+                    <th class="col-source">Source</th>
+                    <th class="col-state">State</th>
+                    <th class="col-crime">Crime Type</th>
+                    <th class="col-sentence">Sentence</th>
+                    <th class="col-quality">Q</th>
+                    <th class="col-actions"></th>
+                </tr>
+            </thead>
+            <tbody id="spreadsheetBody">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination" id="pagination"></div>
+</div>
+
+<script src="/static/js/articles.js"></script>
+{% endblock %}

@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="search-section">
+    <h2>Search Articles</h2>
+    <form id="searchForm" class="search-form">
+        <div class="form-row">
+            <div class="form-group">
+                <label>Crime Type</label>
+                <div class="toggle-group">
+                    <label class="toggle-option">
+                        <input type="radio" name="crime_toggle" value="death" />
+                        <span>Death</span>
+                    </label>
+                    <label class="toggle-option">
+                        <input type="radio" name="crime_toggle" value="serious" />
+                        <span>Serious</span>
+                    </label>
+                    <label class="toggle-option">
+                        <input type="radio" name="crime_toggle" value="both" checked />
+                        <span>Both</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender">
+                    <option value="any">Any</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="state">US State</label>
+                <select id="state" name="state">
+                    <option value="">Any State</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="dateFrom">Date From</label>
+                <input type="date" id="dateFrom" name="date_from" />
+            </div>
+            <div class="form-group">
+                <label for="dateTo">Date To</label>
+                <input type="date" id="dateTo" name="date_to" />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label for="customKeywords">Custom Keywords (comma-separated)</label>
+                <input type="text" id="customKeywords" name="custom_keywords"
+                       placeholder="e.g. restaurant, shooting, robbery" />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="targetCount">Target Cases</label>
+                <input type="number" id="targetCount" name="target_count" min="5" max="200" value="50" step="5" />
+                <p style="color:var(--text-tertiary);font-size:0.75rem;margin-top:0.2rem;">
+                    Program will keep searching until it finds this many cases.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label>Search Mode</label>
+                <div class="toggle-group">
+                    <label class="toggle-option">
+                        <input type="radio" name="search_mode" value="standard" />
+                        <span>Standard</span>
+                    </label>
+                    <label class="toggle-option">
+                        <input type="radio" name="search_mode" value="deep" checked />
+                        <span>Deep Research</span>
+                    </label>
+                </div>
+                <p style="color:var(--text-tertiary);font-size:0.75rem;margin-top:0.3rem;">
+                    Deep Research searches Google News, Web, Facebook, and YouTube (uses 4x API credits).
+                </p>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="searchBtn">Search</button>
+            <button type="button" class="btn btn-secondary" id="saveSearchBtn">Save Search</button>
+            <button type="button" class="btn btn-secondary" id="exportCsvBtn" disabled>Export CSV</button>
+        </div>
+    </form>
+</div>
+
+<div id="statusBar" class="status-bar" style="display:none;">
+    <span id="statusText"></span>
+</div>
+
+<div id="sheetsLink" class="sheets-link" style="display:none;">
+    <a id="sheetsUrl" href="#" target="_blank" rel="noopener">View in Google Sheets</a>
+</div>
+
+<div id="resultsSection" class="results-section" style="display:none;">
+    <div class="results-header">
+        <div>
+            <h3>Results <span style="color:var(--text-secondary);font-weight:400;">(<span id="resultCount">0</span> articles)</span></h3>
+            <p class="query-used">Query: <code id="queryUsed"></code></p>
+        </div>
+    </div>
+    <div class="table-wrapper">
+        <table id="resultsTable" class="results-table">
+            <thead>
+                <tr>
+                    <th data-sort="title">Title</th>
+                    <th data-sort="defendant_name">Defendant</th>
+                    <th data-sort="published_date">Date</th>
+                    <th data-sort="source">Source</th>
+                    <th data-sort="state">State</th>
+                    <th data-sort="crime_type">Crime</th>
+                    <th data-sort="sentence_details">Sentence</th>
+                    <th data-sort="quality_score">Quality</th>
+                </tr>
+            </thead>
+            <tbody id="resultsBody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Save Search Modal -->
+<div id="saveModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h3>Save Search</h3>
+        <div class="form-group">
+            <label for="searchName">Name</label>
+            <input type="text" id="searchName" placeholder="e.g. Texas murder sentencing" />
+        </div>
+        <div class="modal-actions">
+            <button class="btn btn-secondary" id="cancelSaveBtn">Cancel</button>
+            <button class="btn btn-primary" id="confirmSaveBtn">Save</button>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/app.js"></script>
+{% endblock %}

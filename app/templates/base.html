@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tripoli — Sentencing Article Finder{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="/">Tripoli</a>
+            <span class="nav-subtitle">Sentencing Article Finder</span>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-link">Search</a>
+            <a href="/articles" class="nav-link">Articles</a>
+            <a href="/saved-searches" class="nav-link">Saved</a>
+        </div>
+    </nav>
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

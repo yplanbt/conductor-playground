@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: tripoli
+    runtime: docker
+    plan: free
+    envVars:
+      - key: SERPAPI_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: AI_QUALITY_THRESHOLD
+        value: "60"

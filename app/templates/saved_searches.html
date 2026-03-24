@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="saved-section">
+    <h2>Saved Searches</h2>
+
+    {% if searches %}
+    <div class="saved-list">
+        {% for s in searches %}
+        <div class="saved-card" data-id="{{ s.id }}">
+            <div class="saved-info">
+                <h4>{{ s.name }}</h4>
+                <p class="saved-date">{{ s.created_at }}</p>
+                <div class="saved-params">
+                    <span class="param-badge">{{ s.search_params.get('crime_toggle', 'both') | capitalize }}</span>
+                    {% if s.search_params.get('state') %}
+                    <span class="param-badge">{{ s.search_params['state'] }}</span>
+                    {% endif %}
+                    {% if s.search_params.get('gender') and s.search_params['gender'] != 'any' %}
+                    <span class="param-badge">{{ s.search_params['gender'] | capitalize }}</span>
+                    {% endif %}
+                    {% if s.search_params.get('custom_keywords') %}
+                    <span class="param-badge">+ Keywords</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="saved-actions">
+                <a href="/?load={{ s.id }}" class="btn btn-primary btn-sm">Load</a>
+                <button class="btn btn-danger btn-sm delete-search" data-id="{{ s.id }}">Delete</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="empty-state">No saved searches yet.<br>Run a search and click "Save Search" to save it for later.</p>
+    {% endif %}
+</div>
+
+<script>
+document.querySelectorAll('.delete-search').forEach(btn => {
+    btn.addEventListener('click', async () => {
+        const id = btn.dataset.id;
+        if (!confirm('Delete this saved search?')) return;
+        await fetch(`/api/saved-searches/${id}`, { method: 'DELETE' });
+        btn.closest('.saved-card').remove();
+    });
+});
+</script>
+{% endblock %}
