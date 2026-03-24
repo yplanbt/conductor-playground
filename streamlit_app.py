@@ -14,14 +14,14 @@ except Exception:
 
 from app.database import (
     init_db, save_search_history, save_articles, get_all_articles,
-    get_existing_urls, get_existing_fingerprints, update_article,
+    get_existing_fingerprints, update_article,
     delete_article, delete_all_articles, add_article,
     get_saved_searches, save_search_config, delete_saved_search,
 )
 from app.services.query_builder import build_query, get_query_variation, build_query_for_source
 from app.services import news_fetcher
 from app.services.ai_analyzer import analyze_batch
-from app.services.dedup import deduplicate_results, deduplicate_with_fingerprints, normalize_url
+from app.services.dedup import deduplicate_results, deduplicate_with_fingerprints, normalize_url, get_existing_urls
 from app.services.date_utils import parse_published_date
 from app.models import ArticleResult
 
