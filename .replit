@@ -1,15 +1,11 @@
-run = "pip install -r requirements.txt && python run.py"
-language = "python3"
+entrypoint = "run.py"
+modules = ["python-3.11:v18-20230807-322e88b"]
 
 [nix]
 channel = "stable-24_05"
 
-[nix.packages]
-libxml2 = "libxml2"
-libxslt = "libxslt"
-
-[env]
-PORT = "8000"
+[deployment]
+run = ["python", "run.py"]
 
 [[ports]]
 localPort = 8000
